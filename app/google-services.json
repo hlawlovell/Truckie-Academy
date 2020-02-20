@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "61567748134",
+    "firebase_url": "https://truckie-academy-a529c.firebaseio.com",
+    "project_id": "truckie-academy-a529c",
+    "storage_bucket": "truckie-academy-a529c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:61567748134:android:bcf982972c49616966bee7",
+        "android_client_info": {
+          "package_name": "com.example.augmentedhighereducationfortruckdrivers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "61567748134-ing41dmvsmda2p8oou6fsoi3d2vcarsh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.augmentedhighereducationfortruckdrivers",
+            "certificate_hash": "957822456b2fffabecbd3a5729612dd7a06a41ca"
+          }
+        },
+        {
+          "client_id": "61567748134-301eqcm6dqnq9eqj9c90n6tjg3otfdp4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgOX-Hm7Dr1BGEf4I7VOl5qEEPx37ly4E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "61567748134-301eqcm6dqnq9eqj9c90n6tjg3otfdp4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

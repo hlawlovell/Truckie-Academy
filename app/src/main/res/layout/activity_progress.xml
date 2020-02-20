@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- A RecyclerView with some commonly used attributes -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:background="#E2E2E2">
+
+        <TextView
+            android:id="@+id/text_view_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text=""
+            android:textSize="30sp" />
+
+        <ProgressBar
+            android:id="@+id/editText"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="200dp"
+            android:layout_height="4dp"
+            android:layout_alignTop="@+id/text_view_progress"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"
+            android:indeterminate="false"
+            android:progress="0"
+            android:progressTint="#E91E63" />
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/my_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="530dp"
+        android:scrollbars="vertical"
+        app:reverseLayout="false">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</LinearLayout>

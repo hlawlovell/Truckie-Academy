@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.augmentedhighereducationfortruckdrivers.MainActivity">
+
+    <item
+        android:id="@+id/progress"
+        android:icon="@drawable/ic_assignment_black_24dp"
+        android:title="  Progress" />
+    <item
+        android:id="@+id/Help"
+        android:icon="@drawable/ic_help_outline_black_24dp"
+        android:title="  Help" />
+
+    <item
+        android:id="@+id/logout"
+        android:icon="@drawable/ic_exit_to_app_black_24dp"
+        android:title="  Logout" />
+</menu>

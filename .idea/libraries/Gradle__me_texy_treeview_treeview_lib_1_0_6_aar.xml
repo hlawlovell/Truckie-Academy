@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: me.texy.treeview:treeview_lib:1.0.6@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/eee14e17cadb5c103ed2ee520d0b9a24/treeview_lib-1.0.6/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/eee14e17cadb5c103ed2ee520d0b9a24/treeview_lib-1.0.6/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/me.texy.treeview/treeview_lib/1.0.6/e3d1fe9112e12af466b6694e689c2f3c87154f12/treeview_lib-1.0.6-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/me.texy.treeview/treeview_lib/1.0.6/54b7914f93e972efcd2fd4ec515a4573159cd931/treeview_lib-1.0.6-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
