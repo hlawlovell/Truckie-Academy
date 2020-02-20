@@ -1,45 +1,118 @@
-**Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**
+# General Description
 
-When you're done, you can delete the content in this README and update the file with details for others getting started with your repository.
+This native android application is an education platform that uses speech recognition and text to speech capabilities to deliver a hands-free learning experience. Lessons are delivered in a series of 'segments'. 
+These segments each consist of a small lecture, followed by some questions which the users are prompted to answer to quiz their understanding. This application also allows users to view their progress
+on lessons.
 
-*We recommend that you open this README in another tab as you perform the tasks below. You can [watch our video](https://youtu.be/0ocf7u76WSo) for a full demo of all the steps in this tutorial. Open the video in a new tab to avoid leaving Bitbucket.*
+# Technology Stack
 
----
+Programming language - Java
 
-## Edit a file
+Backend - Firebase
 
-You’ll start by editing this README file to learn how to edit a file in Bitbucket.
+Database - Firebase cloud firestore (NoSQL)
 
-1. Click **Source** on the left side.
-2. Click the README.md link from the list of files.
-3. Click the **Edit** button.
-4. Delete the following text: *Delete this line to make a change to the README from Bitbucket.*
-5. After making your change, click **Commit** and then **Commit** again in the dialog. The commit page will open and you’ll see the change you just made.
-6. Go back to the **Source** page.
+SDK - Android SDK 21
 
----
+# External libraries used
 
-## Create a file
+Gson - Serialization/deserialization from .json file
 
-Next, you’ll add a new file to this repository.
+Android speech - Speech recognition
 
-1. Click the **New file** button at the top of the **Source** page.
-2. Give the file a filename of **contributors.txt**.
-3. Enter your name in the empty file space.
-4. Click **Commit** and then **Commit** again in the dialog.
-5. Go back to the **Source** page.
+Android speech tts - Text to speech
 
-Before you move on, go ahead and explore the repository. You've already seen the **Source** page, but check out the **Commits**, **Branches**, and **Settings** pages.
+# Database schema
 
----
+The database is a NoSQL DbaaS that is provided by Google's Firebase. Currently our schema is storing everything under the 'users' collection. /users/ contains a document for each registered user. It tracks
+the total lessons they have completed, as well as their e-mail address for identification. Each user document also contains a collection called 'lessons'. These contain documents that record details 
+about the lessons they have added to their device.
 
-## Clone a repository
+# Lessons are stored locally and in the database
 
-Use these steps to clone from SourceTree, our client for using the repository command-line free. Cloning allows you to work on your files locally. If you don't yet have SourceTree, [download and install first](https://www.sourcetreeapp.com/). If you prefer to clone from the command line, see [Clone a repository](https://confluence.atlassian.com/x/4whODQ).
+Lessons as described above are persisted in .json files which are pulled from the Firebase cloud storage bucket in the '/lessons/' folder. When users add these lessons through MainActivity, they are 
+stored in local storage to reduce the amount of database reads. As this happens, the lesson is recorded as a document in the database under /users/uid/lessons/lesson/. Currently the lesson 
+document stores the user's top score, the time it was last updated, and the name of the lesson. Deletes made to application apply both locally and remotely on the database. Local storage directory
+is retrievable with File dir = getFilesDir(). The required format for the lesson files can be seen here
 
-1. You’ll see the clone button under the **Source** heading. Click that button.
-2. Now click **Check out in SourceTree**. You may need to create a SourceTree account or log in.
-3. When you see the **Clone New** dialog in SourceTree, update the destination path and name if you’d like to and then click **Clone**.
-4. Open the directory you just created to see your repository’s files.
+```
+{
+    "name": "",
+    
+    "segments": [
+        {
+            "segmentText": "",
+            "questions": [
+                {
+                    "question": "",
+                    "answer": true
+                }
+            ]
+               
+        }
 
-Now that you're more familiar with your Bitbucket repository, go ahead and add a new file locally. You can [push your change back to Bitbucket with SourceTree](https://confluence.atlassian.com/x/iqyBMg), or you can [add, commit,](https://confluence.atlassian.com/x/8QhODQ) and [push from the command line](https://confluence.atlassian.com/x/NQ0zDQ).
+    ]
+    
+}
+```
+
+
+# TeachActivity
+
+This is the activity where the lessons occur. TeachActivity is spawned by MainActivity, which passes a string of the lesson file name through an intent. The activity then reads the file from 
+app storage, deserializing .json to Java object (Object is defined in the models folder) using the Gson library. Logic of the lesson flow is controlled using callback methods defined by both the 
+android.speech.tts listener and the android.speech.listener, in conjunction with some  variables storing the current state of the lesson. currentState stores what stage of the lesson it is currently. 
+0 represents the greeting stage, 1 represents the lecture stage, and 2 represents the questioning stage. The other variables keep track of what specific segment or question is currently being examined.
+
+
+# Brief description of the activities
+
+### MainActivity 
+Home page, houses a menu button which navigates to other activities, and a floating action button that redirects to LessonAddActivity. Has a ListView that lists all lessons currently 
+in app storage, onClick redirects to TeachActivity. 
+
+### LoginActivity 
+Uses firebase authentication
+
+### TeachActivity 
+See above.
+
+### LessonAddActivity 
+This activity uses a recyclerView to display lessons from the Firebase Cloud Storage bucket. It shows files from the /lessons/ folder. There is an onClick implementation that 
+then downloads the files into app storage, and creates a reference in the database.
+
+### ProgressActivity 
+This activity uses a recyclerView to show the progress of a user. It uses data pulled from the database.
+
+# Where to go from here
+
+### Backend
+Some suggestions of where to go from here. The backend is currently being managed by Firebase. That includes authentication, database and file storage. Perhaps a better long-term strategy would be
+to develop one's own back-end using a framework such as Django or Ruby on Rails, Firebase was used as a backend was needed in a short time, but going with Django or something similar would offer better customizability and scaling.
+Additionally, the use of an SQL database instead of the currently used NoSQL is much more suited to the type of data that we are collecting. 
+
+### Lesson Design
+Currently the lessons are designed in such a way that allows for teaching of basic concepts and knowledge. The structure of the lessons, or how the lesson is conducted requires a big overhaul and brainstorming
+to get it to the level of teaching higher-level concepts.
+
+### Design
+The application currently has a basic level of design that could be improved with better iconography, better UX design, and responsiveness. 
+
+### Data driven development
+The database schema could be improved and altered to allow for the collection of more data from users. Pragmatic usages of this could be the tracking and analysis of which questions users tend to get wrong most often,
+which questions they get right, where they are using the application, when. The list goes on. 
+
+### Cross platform
+Porting this application to IOS is a major point of consideration, not everyone has android phones.
+
+
+
+# Website
+
+https://truckieacademy.netlify.com/
+
+# Scope
+
+https://docs.google.com/document/d/1tuVRxZPONGGDo0hmFfQuteDjxidIdg4iYS-3lbxOBGY/edit?usp=sharing
+
+
